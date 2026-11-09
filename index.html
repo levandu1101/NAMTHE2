@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 7 Unit 2: Advertising - 1-on-1 Online Interactive Review Helper</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cabinet+Grotesk:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0b0f19;
+  --bg-secondary: #131b2e;
+  --bg-card: #182238;
+  --bg-card-hover: #1f2c48;
+  --primary: #4f46e5;
+  --primary-light: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.25);
+  --pepsi-p1: #3b82f6;
+  --pepsi-e:  #ec4899;
+  --pepsi-p2: #10b981;
+  --pepsi-s:  #f59e0b;
+  --pepsi-i:  #ef4444;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-accent: #38bdf8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(255, 255, 255, 0.2);
+  --correct: #10b981;
+  --wrong: #ef4444;
+  --teacher-color: #fbbf24;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --base-font-size: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* TOP TEACHER & CLASS CONTROL BAR (Optimized for Google Meet) */
+.top-control-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 15, 25, 0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-badge .pill {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.brand-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.brand-title span {
+  color: var(--text-accent);
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+.btn-toggle:hover {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-color: var(--border-bright);
+}
+.btn-toggle.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  border-color: #6366f1;
+}
+.btn-toggle.active-teacher {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border-color: #f59e0b;
+}
+
+/* CLASS COUNTDOWN TIMER (FOR 1-1 DRILLS) */
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.score-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #34d399;
+}
+
+/* NAVIGATION TABS */
+.nav-ribbon {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 6px 16px;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 6px;
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+.tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+}
+.tab-btn.active {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+.tab-badge {
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* PROGRESS BAR */
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6366f1, #06b6d4, #10b981);
+  transition: width 0.4s ease;
+}
+
+/* MAIN CONTAINER */
+.app-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 24px 20px 80px 20px;
+}
+
+/* TAB PANES */
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+.tab-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TEACHER COACHING BOXES */
+.teacher-box {
+  display: none;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px dashed var(--teacher-color);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  font-size: 0.88rem;
+  color: #fef3c7;
+}
+body.show-teacher .teacher-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.teacher-icon {
+  font-size: 1.25rem;
+  color: var(--teacher-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.teacher-content strong {
+  color: var(--teacher-color);
+}
+.teacher-content ul {
+  margin-left: 20px;
+  margin-top: 6px;
+}
+.ccq-tag {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fde68a;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* HERO SECTION */
+.hero-card {
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.85), rgba(15, 23, 42, 0.95));
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+}
+.hero-card::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.hero-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.hero-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 720px;
+  margin-bottom: 24px;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.roadmap-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.roadmap-step:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-3px);
+  border-color: var(--primary-light);
+}
+.step-num {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-accent);
+  text-transform: uppercase;
+}
+.step-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 6px 0 4px 0;
+  color: #fff;
+}
+.step-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* PEPSI BADGES & CARDS */
+.pepsi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+.pepsi-card {
+  border-radius: var(--radius-md);
+  padding: 18px 16px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+.pepsi-card:hover {
+  transform: translateY(-4px);
+}
+.pepsi-card.p1 { background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.35); }
+.pepsi-card.e  { background: rgba(236, 72, 153, 0.12); border-color: rgba(236, 72, 153, 0.35); }
+.pepsi-card.p2 { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.35); }
+.pepsi-card.s  { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
+.pepsi-card.i  { background: rgba(239, 68, 68, 0.12);   border-color: rgba(239, 68, 68, 0.35); }
+
+.pepsi-letter {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.pepsi-card.p1 .pepsi-letter { color: var(--pepsi-p1); }
+.pepsi-card.e  .pepsi-letter { color: var(--pepsi-e); }
+.pepsi-card.p2 .pepsi-letter { color: var(--pepsi-p2); }
+.pepsi-card.s  .pepsi-letter { color: var(--pepsi-s); }
+.pepsi-card.i  .pepsi-letter { color: var(--pepsi-i); }
+
+.pepsi-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.pepsi-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.pepsi-ex {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.78rem;
+  color: #e2e8f0;
+  font-style: italic;
+}
+
+/* VOCABULARY SECTION */
+.vocab-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.filter-tabs {
+  display: flex;
+  background: var(--bg-secondary);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  gap: 4px;
+}
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.filter-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* 3D FLASHCARD */
+.flashcard {
+  perspective: 1000px;
+  height: 260px;
+  cursor: pointer;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: var(--radius-md);
+}
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+}
+.flashcard:hover .card-face {
+  border-color: var(--border-bright);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #1e1e38, #182238);
+  transform: rotateY(180deg);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pos-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+.lesson-tag {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.word-main {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.word-ipa {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-accent);
+  margin-top: 2px;
+}
+
+.word-def {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+.word-vn {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+body:not(.show-vn) .word-vn {
+  display: none;
+}
+
+.word-example {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary-light);
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  font-style: italic;
+}
+
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.audio-btns-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-speaker, .btn-mic {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #38bdf8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+.btn-speaker:hover {
+  background: #38bdf8;
+  color: #0b0f19;
+  transform: scale(1.1);
+}
+.btn-mic:hover {
+  background: #ec4899;
+  color: #fff;
+  transform: scale(1.1);
+}
+.btn-mic.listening {
+  background: #ef4444;
+  color: #fff;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.flip-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* SECTION CARDS */
+.section-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  margin-bottom: 26px;
+  box-shadow: var(--shadow);
+}
+.section-header {
+  margin-bottom: 18px;
+}
+.section-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+/* PRACTICE TASK 1: MATCHING */
+.match-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+.match-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.match-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-bright);
+}
+.match-item.selected {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: #6366f1;
+  color: #c7d2fe;
+}
+.match-item.matched {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #6ee7b7;
+  cursor: default;
+  pointer-events: none;
+}
+.match-item.error {
+  animation: shake 0.4s ease;
+  border-color: var(--wrong);
+  background: rgba(239, 68, 68, 0.2);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* PRACTICE TASK 2: UNSCRAMBLE AD COPY */
+.unscramble-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+.unscramble-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+}
+.unscramble-clue {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.letter-bank {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.letter-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border-bright);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.letter-tile:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+.letter-tile.used {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.answer-slots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.slot {
+  width: 38px;
+  height: 38px;
+  border-bottom: 2px solid var(--text-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #38bdf8;
+  cursor: pointer;
+}
+.btn-action-small {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: var(--transition);
+}
+.btn-action-small:hover {
+  background: var(--bg-card-hover);
+  color: #fff;
+}
+
+/* GRAMMAR DEEP DIVE TABS & EXAMPLES */
+.grammar-tab-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.grammar-nav-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.grammar-nav-btn.active {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: #6366f1;
+  color: #818cf8;
+}
+
+.grammar-panel {
+  display: none;
+}
+.grammar-panel.active {
+  display: block;
+}
+
+.rule-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+.rule-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+.rule-box h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rule-formula {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-accent);
+  margin-bottom: 10px;
+}
+.example-list {
+  list-style: none;
+  font-size: 0.85rem;
+}
+.example-list li {
+  padding: 4px 0;
+  color: #cbd5e1;
+}
+.example-list li strong {
+  color: #38bdf8;
+}
+
+/* SLOGAN LAB BOX */
+.slogan-lab-box {
+  background: linear-gradient(135deg, #182238, #111827);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-top: 18px;
+}
+.slogan-display {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 24px 16px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md);
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.highlight-token {
+  padding: 2px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-block;
+}
+.highlight-token:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+.token-p1 { background: rgba(59, 130, 246, 0.3); border: 1px solid var(--pepsi-p1); color: #93c5fd; }
+.token-e  { background: rgba(236, 72, 153, 0.3); border: 1px solid var(--pepsi-e);  color: #f472b6; }
+.token-p2 { background: rgba(16, 185, 129, 0.3); border: 1px solid var(--pepsi-p2); color: #6ee7b7; }
+.token-s  { background: rgba(245, 158, 11, 0.3); border: 1px solid var(--pepsi-s);  color: #fcd34d; }
+.token-i  { background: rgba(239, 68, 68, 0.3);   border: 1px solid var(--pepsi-i);  color: #fca5a5; }
+
+/* SLOGAN STUDIO */
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  margin-top: 18px;
+}
+@media (max-width: 860px) {
+  .studio-grid { grid-template-columns: 1fr; }
+}
+
+.studio-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.form-field label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+  display: block;
+}
+.form-select, .form-input, .form-textarea {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+}
+.form-select:focus, .form-input:focus, .form-textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.ad-preview-billboard {
+  background: linear-gradient(135deg, #1e1b4b, #0f172a);
+  border: 2px solid #6366f1;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+  position: relative;
+}
+.billboard-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.billboard-slogan {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  margin: 16px 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.billboard-product {
+  font-size: 0.95rem;
+  color: #38bdf8;
+  font-weight: 700;
+}
+.billboard-cta {
+  background: #f59e0b;
+  color: #000;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.pepsi-checklist {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.chk-item {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.chk-item.checked {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border-color: #10b981;
+}
+
+/* QUIZ PANE */
+.quiz-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+.quiz-card:hover {
+  border-color: var(--border-bright);
+}
+.quiz-q-num {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.quiz-question-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quiz-opt-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 18px;
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quiz-opt-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-bright);
+}
+.quiz-opt-btn.correct {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10b981;
+  color: #6ee7b7;
+}
+.quiz-opt-btn.wrong {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+.quiz-explanation {
+  display: none;
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #6366f1;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+/* EXIT TICKET CARD */
+.exit-ticket-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-top: 30px;
+}
+.exit-ticket-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #34d399;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* FLOATING TOAST */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1e1b4b;
+  border: 1px solid #6366f1;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+.toast-msg.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .top-control-bar { padding: 8px 12px; }
+  .app-container { padding: 16px 12px 60px 12px; }
+  .match-columns { grid-template-columns: 1fr; }
+  .hero-card { padding: 20px; }
+}
+</style>
+</head>
+<body class="show-vn">
+
+<!-- STICKY CONTROL BAR (Google Meet 1-1 Teaching Optimized) -->
+<header class="top-control-bar">
+  <div class="brand-badge">
+    <span class="pill">Grade 7</span>
+    <div class="brand-title">Unit 2: <span>Advertising Review</span></div>
+  </div>
+
+  <div class="controls-group">
+    <!-- FONT RESIZE CONTROLS (Screenshare helper) -->
+    <button class="btn-toggle" onclick="changeFontSize(-1)" title="Smaller font">A-</button>
+    <button class="btn-toggle" onclick="changeFontSize(1)" title="Larger font">A+</button>
+
+    <!-- DRILL TIMER (1-1 activity pacing) -->
+    <div class="timer-pill" id="timerDisplay" onclick="cycleTimer()" title="Click to start 2-min countdown">
+      ⏱️ <span id="timerText">02:00</span>
+    </div>
+
+    <!-- VIETNAMESE TOGGLE -->
+    <button class="btn-toggle active" id="btnToggleVN" onclick="toggleVietnamese()">
+      <span>🇻🇳 VN: ON</span>
+    </button>
+
+    <!-- TEACHER COACHING MODE -->
+    <button class="btn-toggle" id="btnToggleTeacher" onclick="toggleTeacherMode()">
+      <span>🧑‍🏫 Teacher Tips</span>
+    </button>
+
+    <!-- AUDIO FX -->
+    <button class="btn-toggle active" id="btnToggleAudio" onclick="toggleSoundFx()">
+      <span>🔊 Audio</span>
+    </button>
+
+    <!-- SCORE BADGE -->
+    <div class="score-display">
+      <span>⭐ Score:</span>
+      <span id="globalScoreText">0 / 25</span>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS BAR -->
+<div class="progress-container">
+  <div class="progress-bar" id="topProgressBar"></div>
+</div>
+
+<!-- NAVIGATION RIBBON -->
+<nav class="nav-ribbon">
+  <button class="tab-btn active" onclick="switchTab('tab-overview')">
+    <span>🧭</span> Overview <span class="tab-badge">Start</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-vocab')">
+    <span>📚</span> Vocabulary Lab <span class="tab-badge">20 Words</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-vocab-practice')">
+    <span>⚡</span> Vocab Drills <span class="tab-badge">3 Tasks</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-pepsi')">
+    <span>🎯</span> PEPSI Formula <span class="tab-badge">Core</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-grammar')">
+    <span>✍️</span> Grammar Rules <span class="tab-badge">Imperatives</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-grammar-practice')">
+    <span>🛠️</span> Grammar Lab <span class="tab-badge">Interactive</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-studio')">
+    <span>🎨</span> Ad Studio <span class="tab-badge">Capstone</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-quiz')">
+    <span>🏆</span> Mastery Quiz <span class="tab-badge">10 Qs</span>
+  </button>
+</nav>
+
+<!-- MAIN CONTAINER -->
+<main class="app-container">
+
+  <!-- ========================================== -->
+  <!-- TAB 1: OVERVIEW & LESSON ROADMAP           -->
+  <!-- ========================================== -->
+  <section class="tab-pane active" id="tab-overview">
+    
+    <!-- TEACHER COACHING BOX -->
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>1-on-1 Google Meet Teaching Strategy (Warm-up & Scaffolding):</strong>
+        <ul>
+          <li><strong>Warm-up Hook (3 min):</strong> Ask student: <em>"Think about today—what was the very last advert you saw? Was it on YouTube, TikTok, or a billboard outside?"</em></li>
+          <li><strong>Elicitation:</strong> <em>"What did that advert want you to do? (Buy / remember the brand / click a link)."</em> <span class="ccq-tag">CCQ</span></li>
+          <li><strong>Lesson Plan:</strong> Outline today's 4 micro-steps (Vocab → PEPSI → Grammar → Studio).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <span class="hero-tag">Unit 2: Advertising & Persuasion</span>
+      <h1 class="hero-title">Master Advertising Techniques & Grammar</h1>
+      <p class="hero-subtitle">
+        Explore how businesses convince consumers, decode the famous <strong>PEPSI</strong> advertising formula, master imperative "bossy verbs" and superlatives, and create your own billboard slogan!
+      </p>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-step" onclick="switchTab('tab-vocab')">
+          <div>
+            <div class="step-num">Step 1 • 10 mins</div>
+            <div class="step-title">Vocabulary Lab</div>
+            <div class="step-desc">20 keywords with native audio, phonetic syllables, and Vietnamese translations.</div>
+          </div>
+          <div style="margin-top: 12px; color: var(--text-accent); font-size: 0.82rem; font-weight: 700;">Explore Words →</div>
+        </div>
+
+        <div class="roadmap-step" onclick="switchTab('tab-pepsi')">
+          <div>
+            <div class="step-num">Step 2 • 8 mins</div>
+            <div class="step-title">The PEPSI Formula</div>
+            <div class="step-desc">Personal pronouns, Emotive language, Positive language, Superlatives, Imperatives.</div>
+          </div>
+          <div style="margin-top: 12px; color: var(--text-accent); font-size: 0.82rem; font-weight: 700;">Decode PEPSI →</div>
+        </div>
+
+        <div class="roadmap-step" onclick="switchTab('tab-grammar')">
+          <div>
+            <div class="step-num">Step 3 • 12 mins</div>
+            <div class="step-title">Grammar Rules</div>
+            <div class="step-desc">Imperative commands ("bossy verbs") and persuasive superlative adjectives.</div>
+          </div>
+          <div style="margin-top: 12px; color: var(--text-accent); font-size: 0.82rem; font-weight: 700;">Master Grammar →</div>
+        </div>
+
+        <div class="roadmap-step" onclick="switchTab('tab-studio')">
+          <div>
+            <div class="step-num">Step 4 • 15 mins</div>
+            <div class="step-title">Ad Creator Studio</div>
+            <div class="step-desc">Build your own billboard campaign and analyze your PEPSI persuasion score.</div>
+          </div>
+          <div style="margin-top: 12px; color: var(--text-accent); font-size: 0.82rem; font-weight: 700;">Create Ad →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORE CONCEPT QUICK INTRO -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>📢</span> What is Advertising? (Concept Review)</div>
+        <div class="section-subtitle">Core concepts from Unit 2 Lesson 1 (Grade 7 Integrated English)</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <div style="background: var(--bg-secondary); padding: 18px; border-radius: var(--radius-md); border-left: 4px solid var(--pepsi-p1);">
+          <h4 style="color: #fff; margin-bottom: 6px;">🎯 The Main Goal</h4>
+          <p style="font-size: 0.88rem; color: #cbd5e1;">
+            Advertising is the way companies <strong>convince people to buy their products</strong>. It grabs our attention and makes us want to spend money on their items rather than competitors'.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 18px; border-radius: var(--radius-md); border-left: 4px solid var(--pepsi-e);">
+          <h4 style="color: #fff; margin-bottom: 6px;">🌐 Types of Media</h4>
+          <p style="font-size: 0.88rem; color: #cbd5e1;">
+            <strong>Media</strong> means the different channels used to communicate: <em>Television, websites, billboards (street signs), newspapers, radio, and direct mail</em>.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 18px; border-radius: var(--radius-md); border-left: 4px solid var(--pepsi-p2);">
+          <h4 style="color: #fff; margin-bottom: 6px;">⭐ The PEPSI Magic</h4>
+          <p style="font-size: 0.88rem; color: #cbd5e1;">
+            5 core techniques: <strong>P</strong>ersonal Pronouns, <strong>E</strong>motive Language, <strong>P</strong>ositive Language, <strong>S</strong>uperlatives, and <strong>I</strong>mperatives.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 2: VOCABULARY LAB (20 Cards with TTS)   -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-vocab">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>1-on-1 Pronunciation & Translation Routine:</strong>
+        <ul>
+          <li><strong>Step 1 (TTS Audio):</strong> Click 🔊 to listen to native pronunciation. Have student repeat twice.</li>
+          <li><strong>Step 2 (Speech Check):</strong> Click 🎙️ Mic. Have the student pronounce the word clearly to test voice recognition!</li>
+          <li><strong>Step 3 (Concept Checking):</strong> Ask: <em>"Can you give an example of an advert that uses a wrapper?"</em> <span class="ccq-tag">CCQ</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="vocab-controls">
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterVocab('all', this)">All (20)</button>
+        <button class="filter-btn" onclick="filterVocab('l1', this)">Lesson 1 Core (10)</button>
+        <button class="filter-btn" onclick="filterVocab('l2', this)">Lesson 2 Extension (10)</button>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button class="btn-action-small" onclick="flipAllCards(true)">Flip All</button>
+        <button class="btn-action-small" onclick="flipAllCards(false)">Reset Cards</button>
+      </div>
+    </div>
+
+    <div class="vocab-grid" id="vocabGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 3: VOCABULARY DRILLS (3 Scaffolds)     -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-vocab-practice">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>Scaffolding Sequence:</strong>
+        <p>1. <strong>Matching:</strong> Connects definitions to words (receptive retrieval).<br>
+        2. <strong>Context Fill:</strong> Applies terms in authentic advertising sentences (contextual understanding).<br>
+        3. <strong>Unscramble:</strong> Strengthens orthography and spelling accuracy (productive recall).</p>
+      </div>
+    </div>
+
+    <!-- TASK 1: MATCHING -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>🧩</span> Task 1: Rapid Term & Definition Match</div>
+        <div class="section-subtitle">Click a term on the left, then click its corresponding definition on the right.</div>
+      </div>
+      <div class="match-columns" id="matchContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- TASK 2: CONTEXT CLUES FILL-IN -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>✍️</span> Task 2: Advertising Context Fill-in-the-Blank</div>
+        <div class="section-subtitle">Choose the vocabulary word that best fits the marketing sentence.</div>
+      </div>
+      <div id="fillInContainer" style="display: flex; flex-direction: column; gap: 14px;">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- TASK 3: SPELLING UNSCRAMBLE -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>🔤</span> Task 3: Word Unscramble Challenge</div>
+        <div class="section-subtitle">Click the scrambled letters in order to spell the advertising keyword.</div>
+      </div>
+      <div class="unscramble-container" id="unscrambleContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 4: THE PEPSI FORMULA                  -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-pepsi">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>Concept Exploration (PEPSI Mnemonic):</strong>
+        <p>Ask student: <em>"Why do adverts use the acronym PEPSI?"</em> (Catchy, easy to remember, just like an advertising slogan!). Walk through each technique below, then analyze the 3 live slogan presets.</p>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>🥤</span> The PEPSI Advertising Framework</div>
+        <div class="section-subtitle">5 proven techniques to persuade audiences and drive sales</div>
+      </div>
+
+      <div class="pepsi-grid">
+        <div class="pepsi-card p1">
+          <div class="pepsi-letter">P</div>
+          <div class="pepsi-name">Personal Pronouns</div>
+          <div class="pepsi-desc">Direct words like <strong>you, your, we, our, us</strong>. Makes the customer feel like the ad speaks directly to them.</div>
+          <div class="pepsi-ex">"Because <u>you're</u> worth it." / "Join <u>our</u> family."</div>
+        </div>
+
+        <div class="pepsi-card e">
+          <div class="pepsi-letter">E</div>
+          <div class="pepsi-name">Emotive Language</div>
+          <div class="pepsi-desc">Words evoking strong emotions (pride, comfort, excitement, fear of missing out).</div>
+          <div class="pepsi-ex">"Give your family the <u>heartwarming</u> comfort they deserve."</div>
+        </div>
+
+        <div class="pepsi-card p2">
+          <div class="pepsi-letter">P</div>
+          <div class="pepsi-name">Positive Language</div>
+          <div class="pepsi-desc">Bright, uplifting adjectives and guarantees (pure, 100% guarantee, crisp, refresh).</div>
+          <div class="pepsi-ex">"Taste <u>refreshing</u>, <u>pure</u> mountain spring water."</div>
+        </div>
+
+        <div class="pepsi-card s">
+          <div class="pepsi-letter">S</div>
+          <div class="pepsi-name">Superlatives</div>
+          <div class="pepsi-desc">Words showing the absolute highest quality or degree (best, fastest, easiest, finest).</div>
+          <div class="pepsi-ex">"The <u>smartest</u> smartphone in the world."</div>
+        </div>
+
+        <div class="pepsi-card i">
+          <div class="pepsi-letter">I</div>
+          <div class="pepsi-name">Imperatives</div>
+          <div class="pepsi-desc">"Bossy verbs" giving instructions. Guides the consumer to take immediate action!</div>
+          <div class="pepsi-ex">"<u>Taste</u> the difference! <u>Visit</u> our store today!"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE SLOGAN PEPSI DETECTIVE -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>🔍</span> Slogan Detective: Decode Famous Slogans</div>
+        <div class="section-subtitle">Click the colored highlight tags below the slogan to see how PEPSI techniques are applied!</div>
+      </div>
+
+      <div class="slogan-lab-box">
+        <div class="slogan-display" id="sloganDisplayArea">
+          "Taste the <span class="highlight-token token-s">crispiest</span> chicken in town, because <span class="highlight-token token-p1">you</span> deserve the <span class="highlight-token token-p2">best</span>!"
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-toggle active" onclick="loadSloganPreset(0)">🍗 Slogan 1: Fried Chicken</button>
+          <button class="btn-toggle" onclick="loadSloganPreset(1)">👟 Slogan 2: Sports Shoes</button>
+          <button class="btn-toggle" onclick="loadSloganPreset(2)">🥤 Slogan 3: Energy Drink</button>
+        </div>
+
+        <div id="sloganBreakdownNotes" style="margin-top: 18px; padding: 14px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 0.88rem; color: #cbd5e1;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 5: GRAMMAR RULES (Imperatives & More)  -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-grammar">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>Grammar Teaching Focus:</strong>
+        <ul>
+          <li><strong>Imperatives (Bossy Verbs):</strong> <span class="ccq-tag">CCQ</span> Does an imperative sentence have a subject like "He" or "You"? <em>No! It starts directly with the base verb!</em></li>
+          <li><strong>Negative Imperatives:</strong> <span class="ccq-tag">CCQ</span> How do we form negative imperatives? <em>Always with "Don't + base verb"!</em></li>
+          <li><strong>Superlatives:</strong> 1 syllable (-est) vs 2+ syllables (the most) + irregulars (good → the best).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grammar-tab-row">
+      <button class="grammar-nav-btn active" onclick="switchGrammarTab('g-imperatives', this)">1. Imperatives ("Bossy Verbs")</button>
+      <button class="grammar-nav-btn" onclick="switchGrammarTab('g-superlatives', this)">2. Superlatives in Ads</button>
+      <button class="grammar-nav-btn" onclick="switchGrammarTab('g-pronouns', this)">3. Personal Pronouns</button>
+    </div>
+
+    <!-- GRAMMAR PANEL 1: IMPERATIVES -->
+    <div class="grammar-panel active" id="g-imperatives">
+      <div class="section-card">
+        <div class="section-title"><span>⚡</span> Imperatives: The "Call to Action" Engine</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+          In advertising, companies don't just ask—they guide the consumer with clear commands. These "bossy verbs" are called <strong>imperatives</strong>.
+        </p>
+
+        <div class="rule-comparison-grid">
+          <div class="rule-box">
+            <h4>✅ Positive Imperatives (Commands)</h4>
+            <div class="rule-formula">[ Base Verb ] + [ Object / Phrase ]</div>
+            <ul class="example-list">
+              <li>• <strong>Buy</strong> two, get one free!</li>
+              <li>• <strong>Discover</strong> the secret to glowing skin.</li>
+              <li>• <strong>Taste</strong> the joy in every bite.</li>
+              <li>• <strong>Download</strong> the app right now.</li>
+            </ul>
+          </div>
+
+          <div class="rule-box">
+            <h4>⛔ Negative Imperatives (Warnings / Urgency)</h4>
+            <div class="rule-formula">Don't + [ Base Verb ] + [ Phrase ]</div>
+            <ul class="example-list">
+              <li>• <strong>Don't miss</strong> out on our weekend sale!</li>
+              <li>• <strong>Don't wait</strong> until it's too late.</li>
+              <li>• <strong>Don't settle</strong> for ordinary coffee.</li>
+              <li>• <strong>Don't forget</strong> to subscribe!</li>
+            </ul>
+          </div>
+
+          <div class="rule-box">
+            <h4>💡 Why Marketers Love Imperatives:</h4>
+            <ul class="example-list">
+              <li>1. <strong>Creates Urgency:</strong> Tells the customer to act right now.</li>
+              <li>2. <strong>Clear Direction:</strong> Removes confusion about the next step.</li>
+              <li>3. <strong>High Energy:</strong> Punchy, short, and memorable.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAMMAR PANEL 2: SUPERLATIVES -->
+    <div class="grammar-panel" id="g-superlatives">
+      <div class="section-card">
+        <div class="section-title"><span>👑</span> Superlatives: The "Best of the Best"</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+          Superlatives compare 3 or more items to prove a product is at the absolute top of its category.
+        </p>
+
+        <div class="rule-comparison-grid">
+          <div class="rule-box">
+            <h4>Short Adjectives (1 Syllable)</h4>
+            <div class="rule-formula">the + [ Adj ] + -est</div>
+            <ul class="example-list">
+              <li>• fast → <strong>the fastest</strong> delivery</li>
+              <li>• clean → <strong>the cleanest</strong> wash</li>
+              <li>• cool → <strong>the coolest</strong> style</li>
+            </ul>
+          </div>
+
+          <div class="rule-box">
+            <h4>2 Syllables Ending in -y</h4>
+            <div class="rule-formula">the + [ Adj (-y → -iest) ]</div>
+            <ul class="example-list">
+              <li>• crispy → <strong>the crispiest</strong> crust</li>
+              <li>• easy → <strong>the easiest</strong> way to study</li>
+              <li>• healthy → <strong>the healthiest</strong> snack</li>
+            </ul>
+          </div>
+
+          <div class="rule-box">
+            <h4>Long Adjectives (2+ Syllables)</h4>
+            <div class="rule-formula">the most + [ Adj ]</div>
+            <ul class="example-list">
+              <li>• delicious → <strong>the most delicious</strong> pizza</li>
+              <li>• powerful → <strong>the most powerful</strong> motor</li>
+              <li>• reliable → <strong>the most reliable</strong> phone</li>
+            </ul>
+          </div>
+
+          <div class="rule-box">
+            <h4>🔥 Irregular Champions</h4>
+            <div class="rule-formula">Special forms to memorize!</div>
+            <ul class="example-list">
+              <li>• good → <strong>the best</strong> ("The best a man can get")</li>
+              <li>• bad → <strong>the worst</strong> (avoided in adverts!)</li>
+              <li>• far → <strong>the furthest</strong> reach</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAMMAR PANEL 3: PERSONAL PRONOUNS -->
+    <div class="grammar-panel" id="g-pronouns">
+      <div class="section-card">
+        <div class="section-title"><span>🤝</span> Personal Pronouns: Creating 1-on-1 Intimacy</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+          Compare how impersonal formal language feels versus personal advertising language:
+        </p>
+
+        <div class="rule-comparison-grid">
+          <div class="rule-box" style="border-left: 4px solid var(--wrong);">
+            <h4 style="color: #fca5a5;">❌ Third-Person / Distant</h4>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 8px;">
+              "Customers can clean clothes with this detergent."
+            </p>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Feels boring, cold, like an instruction booklet.</p>
+          </div>
+
+          <div class="rule-box" style="border-left: 4px solid var(--correct);">
+            <h4 style="color: #6ee7b7;">✅ Direct Second-Person (YOU / YOUR)</h4>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 8px;">
+              "Give <strong>your</strong> clothes the gentle freshness <strong>you</strong> deserve."
+            </p>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Direct, friendly, speaks right into the listener's ear!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 6: GRAMMAR & PEPSI INTERACTIVE LAB     -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-grammar-practice">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>Interactive Practice Guiding Questions:</strong>
+        <p>Have student read aloud, identify the key clue, and explain <em>why</em> that grammar rule applies before clicking.</p>
+      </div>
+    </div>
+
+    <!-- DRILL 1: TURN PASSIVE SENTENCES INTO IMPERATIVES -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>🚀</span> Drill 1: The "Bossy Verb" Transformer</div>
+        <div class="section-subtitle">Turn the boring passive sentence into a punchy advertising imperative!</div>
+      </div>
+      <div id="imperativeDrillContainer" style="display: flex; flex-direction: column; gap: 14px;">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- DRILL 2: SUPERLATIVE AD BUILDER -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>👑</span> Drill 2: Complete the Slogan with Superlatives</div>
+        <div class="section-subtitle">Select the grammatically correct superlative to complete each advert.</div>
+      </div>
+      <div id="superlativeDrillContainer" style="display: flex; flex-direction: column; gap: 14px;">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 7: AD CREATOR STUDIO (Capstone)        -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-studio">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>1-on-1 Creative Challenge (Student Production):</strong>
+        <p>Give the student full agency! Ask them to choose a product, type a slogan with at least 3 PEPSI techniques, and present their ad pitch to you over Google Meet. Use the live validator to verify their techniques!</p>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title"><span>🎨</span> The Student Ad Agency Studio</div>
+        <div class="section-subtitle">Design your own billboard campaign and watch your live advert render instantly!</div>
+      </div>
+
+      <div class="studio-grid">
+        <div class="studio-form">
+          <div class="form-field">
+            <label>1. Select Your Product Category:</label>
+            <select class="form-select" id="studioProductSelect" onchange="updateStudioPreview()">
+              <option value="Turbo Zoom Sneakers">👟 Turbo Zoom Sneakers (Ultra fast & sporty)</option>
+              <option value="Mega-Crunch Choco Bar">🍫 Mega-Crunch Choco Bar (Crispy caramel snack)</option>
+              <option value="SmartGlow Study Lamp">💡 SmartGlow Study Lamp (Eye-protection lamp)</option>
+              <option value="SparkleWave Electric Toothbrush">🪥 SparkleWave Sonic Toothbrush (Sparkling smile)</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>2. Choose Advertising Medium:</label>
+            <select class="form-select" id="studioMediaSelect" onchange="updateStudioPreview()">
+              <option value="City Billboard">🛣️ Highway Mega Billboard</option>
+              <option value="Social Media Video Ad">📱 TikTok / YouTube Video Ad</option>
+              <option value="Glossy Magazine">📖 Teen Trend Magazine</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>3. Type Your Catchy Slogan (Use PEPSI techniques!):</label>
+            <textarea class="form-textarea" id="studioSloganInput" oninput="updateStudioPreview()" placeholder="e.g. Run faster than ever with the greatest sneakers for your feet! Buy now!"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label>4. Call to Action (Imperative verb):</label>
+            <input type="text" class="form-input" id="studioCtaInput" oninput="updateStudioPreview()" value="Grab Yours Today!" placeholder="e.g. Try It Now! / Visit Our Store!">
+          </div>
+
+          <button class="btn-toggle active" style="align-self: flex-start; padding: 10px 20px;" onclick="validateStudioPEPSI()">
+            <span>✨ Analyze My PEPSI Power</span>
+          </button>
+        </div>
+
+        <div>
+          <div class="ad-preview-billboard" id="studioBillboard">
+            <div class="billboard-badge" id="previewMediaBadge">🛣️ HIGHWAY BILLBOARD</div>
+            <div>
+              <div class="billboard-product" id="previewProductTitle">Turbo Zoom Sneakers</div>
+              <div class="billboard-slogan" id="previewSloganText">"Step into the future. Unleash your speed!"</div>
+            </div>
+            <div class="billboard-cta" id="previewCtaBtn">Order Now!</div>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px;">PEPSI Techniques Detected:</div>
+            <div class="pepsi-checklist">
+              <span class="chk-item" id="chk-p1">P - Personal Pronoun (you/your)</span>
+              <span class="chk-item" id="chk-e">E - Emotive Word</span>
+              <span class="chk-item" id="chk-p2">P - Positive Word</span>
+              <span class="chk-item" id="chk-s">S - Superlative (-est/most/best)</span>
+              <span class="chk-item" id="chk-i">I - Imperative Verb</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB 8: MASTERY QUIZ (10 Questions)         -->
+  <!-- ========================================== -->
+  <section class="tab-pane" id="tab-quiz">
+    
+    <div class="teacher-box">
+      <div class="teacher-icon">💡</div>
+      <div class="teacher-content">
+        <strong>Formative Assessment Instructions:</strong>
+        <p>Have the student read each question and make their choice. The app gives instant scoring and rich explanations aligned with the official slide review questions.</p>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div>
+          <div class="section-title"><span>🏆</span> Unit 2 Comprehensive Mastery Quiz</div>
+          <div class="section-subtitle">10 questions covering advertising concepts, vocabulary, PEPSI, and grammar</div>
+        </div>
+        <div class="score-display">
+          <span>Quiz Score:</span>
+          <span id="quizScoreText">0 / 10</span>
+        </div>
+      </div>
+
+      <div id="quizContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- EXIT TICKET SUMMARY (Pedagogical Reflection) -->
+    <div class="exit-ticket-card">
+      <div class="exit-ticket-title">🎓 Lesson Exit Ticket (1-on-1 Wrap-up)</div>
+      <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 12px;">
+        Before ending your Google Meet call, prompt your student with these 3 quick exit questions:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+        <div style="background: rgba(0,0,0,0.3); padding: 12px 16px; border-radius: 8px;">
+          <strong style="color: #6ee7b7;">1. Acronym Check:</strong>
+          <p style="font-size: 0.82rem; color: #e2e8f0; margin-top: 4px;">"What does each letter of PEPSI stand for?"</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 12px 16px; border-radius: 8px;">
+          <strong style="color: #38bdf8;">2. Grammar Check:</strong>
+          <p style="font-size: 0.82rem; color: #e2e8f0; margin-top: 4px;">"What is a 'bossy verb' and can you give 2 examples?"</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 12px 16px; border-radius: 8px;">
+          <strong style="color: #fcd34d;">3. Reflection:</strong>
+          <p style="font-size: 0.82rem; color: #e2e8f0; margin-top: 4px;">"Which new vocabulary word was the most interesting today?"</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- FLOATING TOAST -->
+<div class="toast-msg" id="toastMsg">Feedback message</div>
+
+<!-- AUDIO SYNTHESIS & LOGIC SCRIPT -->
+<script>
+/* ========================================================
+   GLOBAL STATE & DATA DEFINITIONS
+   ======================================================== */
+let globalScore = 0;
+let userQuizScore = 0;
+let soundFxEnabled = true;
+let currentFilter = 'all';
+let currentBaseFontSize = 16;
+let timerSeconds = 120;
+let timerInterval = null;
+let isTimerRunning = false;
+
+// FONT RESIZING FOR GOOGLE MEET SCREENSHARING
+function changeFontSize(delta) {
+  currentBaseFontSize = Math.min(22, Math.max(13, currentBaseFontSize + delta));
+  document.documentElement.style.setProperty('--base-font-size', currentBaseFontSize + 'px');
+  showToast(`Font size: ${currentBaseFontSize}px`);
+}
+
+// DRILL COUNTDOWN TIMER
+function cycleTimer() {
+  if (isTimerRunning) {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    document.getElementById('timerText').innerText = "02:00";
+    timerSeconds = 120;
+    showToast("Timer stopped & reset");
+  } else {
+    isTimerRunning = true;
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+      if (timerSeconds < 0) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        playCorrectSound();
+        showToast("⏰ Time is up! Great effort!");
+        document.getElementById('timerText').innerText = "00:00";
+        return;
+      }
+      const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const s = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('timerText').innerText = `${m}:${s}`;
+    }, 1000);
+    showToast("2-Minute Drill Timer Started!");
+  }
+}
+
+// WEB AUDIO SYNTHESIZER
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playTone(freq, type, duration) {
+  if (!soundFxEnabled || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+
+function playCorrectSound() {
+  playTone(523.25, 'sine', 0.15); // C5
+  setTimeout(() => playTone(659.25, 'sine', 0.25), 100); // E5
+  setTimeout(() => playTone(783.99, 'sine', 0.35), 200); // G5
+}
+
+function playWrongSound() {
+  playTone(260, 'sawtooth', 0.2);
+  setTimeout(() => playTone(220, 'sawtooth', 0.3), 150);
+}
+
+// WEB SPEECH SYNTHESIS (Pronunciation Engine)
+function speakWord(text, rate = 0.9) {
+  if (!('speechSynthesis' in window)) {
+    showToast("Speech synthesis not supported on this browser.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = rate;
+  utterance.pitch = 1.0;
+  window.speechSynthesis.speak(utterance);
+}
+
+// WEB SPEECH RECOGNITION (Pronunciation Mic Practice)
+function startSpeechPractice(targetWord, btn) {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) {
+    showToast("Voice recognition requires Chrome/Edge browser.");
+    return;
+  }
+
+  const rec = new SpeechRec();
+  rec.lang = 'en-US';
+  rec.interimResults = false;
+  rec.maxAlternatives = 3;
+
+  btn.classList.add('listening');
+  showToast(`🎙️ Say: "${targetWord}" clearly into your mic...`);
+
+  rec.onresult = (e) => {
+    btn.classList.remove('listening');
+    const spoken = e.results[0][0].transcript.trim().toLowerCase();
+    const target = targetWord.toLowerCase();
+
+    if (spoken.includes(target) || target.includes(spoken)) {
+      playCorrectSound();
+      showToast(`🎯 Great pronunciation! Recognized: "${spoken}"`);
+      addGlobalScore(1);
+    } else {
+      playWrongSound();
+      showToast(`Heard: "${spoken}". Try listening to 🔊 again!`);
+    }
+  };
+
+  rec.onerror = () => {
+    btn.classList.remove('listening');
+    showToast("Microphone error or no speech detected. Try again!");
+  };
+
+  rec.onend = () => {
+    btn.classList.remove('listening');
+  };
+
+  rec.start();
+}
+
+// TOAST NOTIFICATIONS
+function showToast(msg) {
+  const t = document.getElementById('toastMsg');
+  t.innerText = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ========================================================
+   VOCABULARY DATA (20 Words: 10 Lesson 1 + 10 Lesson 2)
+   ======================================================== */
+const VOCAB_DATA = [
+  // LESSON 1 CORE
+  {
+    word: "advert",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/ˈæd.vɜːt/",
+    vn: "mẩu quảng cáo (từ viết tắt của advertisement)",
+    def: "Shortened word for advertisement; notice or film telling people about a product.",
+    ex: "I saw an exciting advert for a new smartphone on television."
+  },
+  {
+    word: "media",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/ˈmiː.di.ə/",
+    vn: "phương tiện truyền thông",
+    def: "The different ways in which information is communicated to people.",
+    ex: "Television, websites, and street signs are common types of advertising media."
+  },
+  {
+    word: "product",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/ˈprɒd.ʌkt/",
+    vn: "sản phẩm",
+    def: "An item or service that is made or designed to be sold to customers.",
+    ex: "The company launched an innovative new hair-care product."
+  },
+  {
+    word: "slogan",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/ˈsləʊ.ɡən/",
+    vn: "khẩu hiệu quảng cáo",
+    def: "A short, memorable phrase used to advertise a product or company.",
+    ex: "Nike's famous slogan is 'Just Do It'."
+  },
+  {
+    word: "bossy",
+    pos: "adj",
+    lesson: "l1",
+    ipa: "/ˈbɒs.i/",
+    vn: "hay chỉ huy, ra lệnh",
+    def: "Always telling other people what to do (describes imperative verbs in adverts).",
+    ex: "Imperatives are called 'bossy verbs' because they order you to buy."
+  },
+  {
+    word: "urgency",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/ˈɜː.dʒən.si/",
+    vn: "tính cấp bách, sự khẩn cấp",
+    def: "Importance; the feeling that something must be responded to right away.",
+    ex: "The advert created urgency with the phrase 'Sale ends today!'."
+  },
+  {
+    word: "wrapper",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/ˈræp.ər/",
+    vn: "bao bì, vỏ gói",
+    def: "Packaging made of paper, plastic, or foil that covers and protects food.",
+    ex: "The bright candy wrapper grabbed everyone's attention on the shelf."
+  },
+  {
+    word: "sensation",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/senˈseɪ.ʃən/",
+    vn: "hiện tượng gây sốt, cảm giác",
+    def: "Something that causes widespread excitement or strong emotional feeling.",
+    ex: "The energy drink advert became an overnight sensation on the internet."
+  },
+  {
+    word: "concoction",
+    pos: "noun",
+    lesson: "l1",
+    ipa: "/kənˈkɒk.ʃən/",
+    vn: "hỗn hợp pha chế",
+    def: "A unique mixture of various ingredients or elements.",
+    ex: "The chef advertised his special refreshing fruit concoction."
+  },
+  {
+    word: "personal",
+    pos: "adj",
+    lesson: "l1",
+    ipa: "/ˈpɜː.sən.əl/",
+    vn: "mang tính cá nhân",
+    def: "Belonging to a single or particular individual rather than people in general.",
+    ex: "Adverts use personal pronouns like 'you' to build a personal connection."
+  },
+
+  // LESSON 2 EXTENSION
+  {
+    word: "epic",
+    pos: "adj",
+    lesson: "l2",
+    ipa: "/ˈep.ɪk/",
+    vn: "hoành tráng, tuyệt đỉnh",
+    def: "Very impressive, heroic, or grand in scale.",
+    ex: "The sports brand released an epic commercial featuring top athletes."
+  },
+  {
+    word: "colleague",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/ˈkɒl.iːɡ/",
+    vn: "đồng nghiệp",
+    def: "A person you work alongside at your job or business.",
+    ex: "My colleague helped design the layout for the billboard advert."
+  },
+  {
+    word: "style",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/staɪl/",
+    vn: "phong cách, kiểu cách",
+    def: "The particular visual or verbal way in which something is done or created.",
+    ex: "The fashion advertisement displayed a modern, elegant style."
+  },
+  {
+    word: "go-kart",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/ˈɡəʊˌkɑːt/",
+    vn: "xe đua mini bốn bánh",
+    def: "A very small, motorized vehicle with four wheels used for racing.",
+    ex: "The amusement park advertised exciting go-kart races for teenagers."
+  },
+  {
+    word: "abbreviation",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/əˌbriː.viˈeɪ.ʃən/",
+    vn: "từ viết tắt",
+    def: "A shortened form of a written word or phrase (e.g. ad for advertisement).",
+    ex: "'PEPSI' is an acronym abbreviation for the 5 persuasive techniques."
+  },
+  {
+    word: "SMS",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/ˌes.emˈes/",
+    vn: "tin nhắn SMS",
+    def: "Short Message Service technology used for sending texts between phones.",
+    ex: "Companies often send promotional discount codes via SMS."
+  },
+  {
+    word: "daredevil",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/ˈdeəˌdev.əl/",
+    vn: "người thích mạo hiểm",
+    def: "A person who loves taking daring risks and doing dangerous stunts.",
+    ex: "Red Bull adverts often sponsor daredevils jumping from planes."
+  },
+  {
+    word: "enthusiast",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/ɪnˈθjuː.zi.æst/",
+    vn: "người say mê, đam mê",
+    def: "A person who is highly interested and passionate about a specific activity.",
+    ex: "Gaming enthusiasts lined up outside to buy the latest console."
+  },
+  {
+    word: "whirlwind",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/ˈwɜːl.wɪnd/",
+    vn: "cơn lốc, cuồng nhiệt",
+    def: "A very energetic, rapid, or intense person, movement, or event.",
+    ex: "The summer sale was a whirlwind of discount shoppers."
+  },
+  {
+    word: "attraction",
+    pos: "noun",
+    lesson: "l2",
+    ipa: "/əˈtræk.ʃən/",
+    vn: "điểm thu hút, điểm tham quan",
+    def: "A pleasant place or feature that draws people for interest or enjoyment.",
+    ex: "The new water park became the town's biggest summer tourist attraction."
+  }
+];
+
+/* ========================================================
+   BUILD FLASHCARDS IN VOCABULARY TAB
+   ======================================================== */
+function renderVocabGrid(filter = 'all') {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = '';
+
+  const list = VOCAB_DATA.filter(item => {
+    if (filter === 'all') return true;
+    return item.lesson === filter;
+  });
+
+  list.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.dataset.lesson = item.lesson;
+
+    card.innerHTML = `
+      <div class="flashcard-inner" onclick="flipCard(this)">
+        <!-- FRONT -->
+        <div class="card-face card-front">
+          <div class="card-header-row">
+            <span class="pos-tag">${item.pos}</span>
+            <span class="lesson-tag">${item.lesson === 'l1' ? 'Lesson 1 Core' : 'Lesson 2 Extension'}</span>
+          </div>
+
+          <div style="margin: 10px 0;">
+            <div class="word-main">${item.word}</div>
+            <div class="word-ipa">${item.ipa}</div>
+            <div class="word-vn">${item.vn}</div>
+          </div>
+
+          <div class="card-footer-row">
+            <div class="audio-btns-group">
+              <button class="btn-speaker" title="Listen Pronunciation" onclick="event.stopPropagation(); speakWord('${item.word}')">
+                🔊
+              </button>
+              <button class="btn-mic" title="Test Your Voice Pronunciation" onclick="event.stopPropagation(); startSpeechPractice('${item.word}', this)">
+                🎙️
+              </button>
+            </div>
+            <span class="flip-hint">Click card to see definition ↻</span>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-face card-back">
+          <div class="card-header-row">
+            <span class="pos-tag">${item.pos}</span>
+            <span style="color: var(--text-accent); font-weight: 700; font-size: 0.8rem;">English Definition</span>
+          </div>
+
+          <div style="margin: 8px 0;">
+            <div class="word-def">${item.def}</div>
+            <div class="word-vn" style="margin-top: 6px;">${item.vn}</div>
+          </div>
+
+          <div class="word-example">"${item.ex}"</div>
+
+          <div class="card-footer-row">
+            <button class="btn-speaker" title="Slow Pronunciation" onclick="event.stopPropagation(); speakWord('${item.word}', 0.75)">
+              🐢
+            </button>
+            <span class="flip-hint">Click to flip back ↻</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function flipCard(innerEl) {
+  innerEl.parentElement.classList.toggle('flipped');
+}
+
+function flipAllCards(flip) {
+  document.querySelectorAll('.flashcard').forEach(fc => {
+    if (flip) fc.classList.add('flipped');
+    else fc.classList.remove('flipped');
+  });
+}
+
+function filterVocab(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderVocabGrid(filter);
+}
+
+/* ========================================================
+   TASK 1: MATCHING GAME LOGIC
+   ======================================================== */
+const MATCH_PAIRS = [
+  { id: 1, term: "slogan", def: "A short, memorable phrase used to advertise a product." },
+  { id: 2, term: "media", def: "The different ways information is communicated (TV, web, signs)." },
+  { id: 3, term: "urgency", def: "Importance; feeling that action must be taken immediately." },
+  { id: 4, term: "bossy verbs", def: "Another name for imperative verbs giving commands in ads." },
+  { id: 5, term: "wrapper", def: "Packaging foil or paper covering food items." }
+];
+
+let selectedTermEl = null;
+let selectedDefEl = null;
+let matchedCount = 0;
+
+function renderMatchingTask() {
+  const container = document.getElementById('matchContainer');
+  container.innerHTML = '';
+
+  const leftCol = document.createElement('div');
+  leftCol.style.display = 'flex';
+  leftCol.style.flexDirection = 'column';
+  leftCol.style.gap = '10px';
+
+  const rightCol = document.createElement('div');
+  rightCol.style.display = 'flex';
+  rightCol.style.flexDirection = 'column';
+  rightCol.style.gap = '10px';
+
+  const shuffledDefs = [...MATCH_PAIRS].sort(() => Math.random() - 0.5);
+
+  MATCH_PAIRS.forEach(pair => {
+    const item = document.createElement('div');
+    item.className = 'match-item';
+    item.dataset.id = pair.id;
+    item.innerHTML = `<strong>${pair.term}</strong> <span>👉</span>`;
+    item.onclick = () => selectTerm(item, pair.id);
+    leftCol.appendChild(item);
+  });
+
+  shuffledDefs.forEach(pair => {
+    const item = document.createElement('div');
+    item.className = 'match-item';
+    item.dataset.id = pair.id;
+    item.innerHTML = `<span>${pair.def}</span>`;
+    item.onclick = () => selectDef(item, pair.id);
+    rightCol.appendChild(item);
+  });
+
+  container.appendChild(leftCol);
+  container.appendChild(rightCol);
+}
+
+function selectTerm(el, id) {
+  if (el.classList.contains('matched')) return;
+  document.querySelectorAll('#matchContainer .match-item').forEach(i => {
+    if (!i.dataset.def) i.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  selectedTermEl = { el, id };
+  checkMatchPair();
+}
+
+function selectDef(el, id) {
+  if (el.classList.contains('matched')) return;
+  selectedDefEl = { el, id };
+  checkMatchPair();
+}
+
+function checkMatchPair() {
+  if (!selectedTermEl || !selectedDefEl) return;
+
+  if (selectedTermEl.id === selectedDefEl.id) {
+    playCorrectSound();
+    selectedTermEl.el.classList.remove('selected');
+    selectedTermEl.el.classList.add('matched');
+    selectedDefEl.el.classList.add('matched');
+    matchedCount++;
+    addGlobalScore(1);
+    showToast(`Great match! (${matchedCount} / ${MATCH_PAIRS.length})`);
+    selectedTermEl = null;
+    selectedDefEl = null;
+  } else {
+    playWrongSound();
+    selectedTermEl.el.classList.add('error');
+    selectedDefEl.el.classList.add('error');
+    setTimeout(() => {
+      if (selectedTermEl && selectedTermEl.el) {
+        selectedTermEl.el.classList.remove('error', 'selected');
+      }
+      if (selectedDefEl && selectedDefEl.el) {
+        selectedDefEl.el.classList.remove('error');
+      }
+      selectedTermEl = null;
+      selectedDefEl = null;
+    }, 500);
+  }
+}
+
+/* ========================================================
+   TASK 2: CONTEXT FILL-IN-THE-BLANKS
+   ======================================================== */
+const FILL_IN_QUESTIONS = [
+  {
+    q: "Nike's famous phrase 'Just Do It' is recognized as one of the greatest advertising _______ of all time.",
+    opts: ["slogans", "wrappers", "concoctions", "colleagues"],
+    correct: 0,
+    hint: "A memorable, short phrase used to sell a product."
+  },
+  {
+    q: "The company ran adverts across different types of _______ including television, social media, and billboards.",
+    opts: ["wrappers", "media", "sms", "urgency"],
+    correct: 1,
+    hint: "Methods used to communicate information to the public."
+  },
+  {
+    q: "The advert said 'Sale ends at midnight!', creating a strong sense of _______ so customers buy right now.",
+    opts: ["urgency", "style", "product", "colleague"],
+    correct: 0,
+    hint: "The feeling of needing to act right away."
+  }
+];
+
+function renderFillInTask() {
+  const container = document.getElementById('fillInContainer');
+  container.innerHTML = '';
+
+  FILL_IN_QUESTIONS.forEach((item, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'unscramble-card';
+
+    const optsHtml = item.opts.map((opt, optIdx) => `
+      <button class="btn-toggle" onclick="checkFillIn(this, ${qIdx}, ${optIdx})">${opt}</button>
+    `).join(' ');
+
+    card.innerHTML = `
+      <div style="font-weight: 600; color: #fff; margin-bottom: 10px;">${qIdx + 1}. ${item.q}</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">${optsHtml}</div>
+      <div id="fillFeedback_${qIdx}" style="margin-top: 10px; font-size: 0.85rem; display: none;"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function checkFillIn(btn, qIdx, optIdx) {
+  const item = FILL_IN_QUESTIONS[qIdx];
+  const fb = document.getElementById(`fillFeedback_${qIdx}`);
+  fb.style.display = 'block';
+
+  if (optIdx === item.correct) {
+    playCorrectSound();
+    btn.style.background = 'rgba(16, 185, 129, 0.3)';
+    btn.style.borderColor = '#10b981';
+    btn.style.color = '#6ee7b7';
+    fb.innerHTML = `<span style="color: #6ee7b7;">✓ Correct! Well done.</span>`;
+    addGlobalScore(1);
+  } else {
+    playWrongSound();
+    btn.style.background = 'rgba(239, 68, 68, 0.3)';
+    btn.style.borderColor = '#ef4444';
+    fb.innerHTML = `<span style="color: #fca5a5;">✗ Try again! Hint: ${item.hint}</span>`;
+  }
+}
+
+/* ========================================================
+   TASK 3: UNSCRAMBLE AD COPY KEYWORDS
+   ======================================================== */
+const UNSCRAMBLE_ITEMS = [
+  { word: "PRODUCT", clue: "An item created by a business to be sold to customers." },
+  { word: "SLOGAN", clue: "A catchy phrase used in marketing." },
+  { word: "BOSSY", clue: "An adjective describing verbs that give commands (imperatives)." }
+];
+
+function renderUnscrambleTask() {
+  const container = document.getElementById('unscrambleContainer');
+  container.innerHTML = '';
+
+  UNSCRAMBLE_ITEMS.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'unscramble-card';
+    card.id = `unscrambleCard_${idx}`;
+
+    const letters = item.word.split('').sort(() => Math.random() - 0.5);
+
+    const tilesHtml = letters.map((l, lIdx) => `
+      <button class="letter-tile" onclick="pickLetter(${idx}, '${l}', this)">${l}</button>
+    `).join('');
+
+    const slotsHtml = item.word.split('').map(() => `
+      <div class="slot"></div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="unscramble-clue">💡 Clue: <strong>${item.clue}</strong> (${item.word.length} letters)</div>
+      <div class="letter-bank" id="bank_${idx}">${tilesHtml}</div>
+      <div style="display: flex; align-items: center;">
+        <div class="answer-slots" id="slots_${idx}">${slotsHtml}</div>
+        <button class="btn-action-small" onclick="resetUnscramble(${idx})">Reset</button>
+      </div>
+      <div id="unscrambleStatus_${idx}" style="margin-top: 10px; font-size: 0.85rem; font-weight: 700;"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+const currentUnscrambles = {};
+
+function pickLetter(itemIdx, letter, btn) {
+  if (btn.classList.contains('used')) return;
+
+  if (!currentUnscrambles[itemIdx]) currentUnscrambles[itemIdx] = [];
+  const target = UNSCRAMBLE_ITEMS[itemIdx].word;
+
+  if (currentUnscrambles[itemIdx].length >= target.length) return;
+
+  btn.classList.add('used');
+  currentUnscrambles[itemIdx].push({ letter, btn });
+
+  const slots = document.querySelectorAll(`#slots_${itemIdx} .slot`);
+  currentUnscrambles[itemIdx].forEach((obj, i) => {
+    slots[i].innerText = obj.letter;
+  });
+
+  if (currentUnscrambles[itemIdx].length === target.length) {
+    const typed = currentUnscrambles[itemIdx].map(o => o.letter).join('');
+    const status = document.getElementById(`unscrambleStatus_${itemIdx}`);
+    if (typed === target) {
+      playCorrectSound();
+      status.innerHTML = `<span style="color: #6ee7b7;">✓ Excellent! You spelled ${target}!</span>`;
+      addGlobalScore(1);
+    } else {
+      playWrongSound();
+      status.innerHTML = `<span style="color: #fca5a5;">✗ Incorrect spelling. Click Reset to try again!</span>`;
+    }
+  }
+}
+
+function resetUnscramble(itemIdx) {
+  currentUnscrambles[itemIdx] = [];
+  const slots = document.querySelectorAll(`#slots_${itemIdx} .slot`);
+  slots.forEach(s => s.innerText = '');
+  const bank = document.querySelectorAll(`#bank_${itemIdx} .letter-tile`);
+  bank.forEach(b => b.classList.remove('used'));
+  document.getElementById(`unscrambleStatus_${itemIdx}`).innerHTML = '';
+}
+
+/* ========================================================
+   SLOGAN DETECTIVE PRESETS
+   ======================================================== */
+const SLOGAN_PRESETS = [
+  {
+    html: `"<span class="highlight-token token-i">Taste</span> the <span class="highlight-token token-s">crispiest</span> chicken in town, because <span class="highlight-token token-p1">you</span> deserve the <span class="highlight-token token-p2">best</span>!"`,
+    notes: `
+      <strong>PEPSI Breakdown:</strong>
+      <ul>
+        <li><span style="color: #fca5a5;">[I] Imperative:</span> 'Taste' (bossy command to start the sentence).</li>
+        <li><span style="color: #fcd34d;">[S] Superlative:</span> 'crispiest' (short adjective crispy → crispiest).</li>
+        <li><span style="color: #93c5fd;">[P] Personal Pronoun:</span> 'you' (talks straight to the consumer).</li>
+        <li><span style="color: #6ee7b7;">[P] Positive Word:</span> 'best' (creates feelings of luxury and high quality).</li>
+      </ul>
+    `
+  },
+  {
+    html: `"<span class="highlight-token token-i">Unleash</span> <span class="highlight-token token-p1">your</span> inner champion with the world's <span class="highlight-token token-s">lightest</span> running shoes!"`,
+    notes: `
+      <strong>PEPSI Breakdown:</strong>
+      <ul>
+        <li><span style="color: #fca5a5;">[I] Imperative:</span> 'Unleash' (powerful active bossy verb).</li>
+        <li><span style="color: #93c5fd;">[P] Personal Pronoun:</span> 'your' (directly engages the wearer).</li>
+        <li><span style="color: #f472b6;">[E] Emotive Language:</span> 'champion' (appeals to pride and ambition).</li>
+        <li><span style="color: #fcd34d;">[S] Superlative:</span> 'lightest' (top athletic performance).</li>
+      </ul>
+    `
+  },
+  {
+    html: `"<span class="highlight-token token-i">Drink</span> pure energy! <span class="highlight-token token-p1">We</span> guarantee <span class="highlight-token token-p1">you</span> will feel the <span class="highlight-token token-s">greatest</span> boost!"`,
+    notes: `
+      <strong>PEPSI Breakdown:</strong>
+      <ul>
+        <li><span style="color: #fca5a5;">[I] Imperative:</span> 'Drink' (direct call to action).</li>
+        <li><span style="color: #93c5fd;">[P] Personal Pronouns:</span> 'We' (the company) and 'you' (the customer).</li>
+        <li><span style="color: #6ee7b7;">[P] Positive Language:</span> 'guarantee' & 'pure'.</li>
+        <li><span style="color: #fcd34d;">[S] Superlative:</span> 'greatest' (great → greatest).</li>
+      </ul>
+    `
+  }
+];
+
+function loadSloganPreset(idx) {
+  document.getElementById('sloganDisplayArea').innerHTML = SLOGAN_PRESETS[idx].html;
+  document.getElementById('sloganBreakdownNotes').innerHTML = SLOGAN_PRESETS[idx].notes;
+}
+
+/* ========================================================
+   GRAMMAR PRACTICE DRILLS
+   ======================================================== */
+const IMPERATIVE_DRILLS = [
+  {
+    passive: "Customers are advised to try this juice today.",
+    imperative: "Try this juice today!",
+    options: ["Try this juice today!", "You will try this juice.", "Trying this juice today."],
+    correct: 0,
+    explanation: "Imperatives start directly with the base form of the verb without a subject pronoun."
+  },
+  {
+    passive: "You shouldn't miss our weekend discounts.",
+    imperative: "Don't miss our weekend discounts!",
+    options: ["Not miss our weekend discounts!", "Don't miss our weekend discounts!", "You don't miss discounts."],
+    correct: 1,
+    explanation: "Negative imperatives always use 'Don't + base verb'."
+  },
+  {
+    passive: "People should call our store right now.",
+    imperative: "Call our store right now!",
+    options: ["Calling our store now!", "Call our store right now!", "To call our store right now."],
+    correct: 1,
+    explanation: "'Call' is the base verb imperative command."
+  }
+];
+
+function renderImperativeDrills() {
+  const container = document.getElementById('imperativeDrillContainer');
+  container.innerHTML = '';
+
+  IMPERATIVE_DRILLS.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'unscramble-card';
+
+    const optsHtml = item.options.map((opt, optIdx) => `
+      <button class="quiz-opt-btn" onclick="checkImperativeDrill(this, ${idx}, ${optIdx})">
+        <span>${opt}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div style="font-size: 0.85rem; color: var(--text-muted);">Boring Sentence: <em>"${item.passive}"</em></div>
+      <div style="font-weight: 700; color: #fff; margin: 6px 0 12px 0;">Transform into an Imperative Slogan:</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">${optsHtml}</div>
+      <div id="impFb_${idx}" style="margin-top: 10px; font-size: 0.85rem; display: none;"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function checkImperativeDrill(btn, idx, optIdx) {
+  const item = IMPERATIVE_DRILLS[idx];
+  const fb = document.getElementById(`impFb_${idx}`);
+  fb.style.display = 'block';
+
+  if (optIdx === item.correct) {
+    playCorrectSound();
+    btn.classList.add('correct');
+    fb.innerHTML = `<span style="color: #6ee7b7;">✓ Correct! ${item.explanation}</span>`;
+    addGlobalScore(1);
+  } else {
+    playWrongSound();
+    btn.classList.add('wrong');
+    fb.innerHTML = `<span style="color: #fca5a5;">✗ Try again! Hint: Look for the base verb.</span>`;
+  }
+}
+
+const SUPERLATIVE_DRILLS = [
+  {
+    stem: "Choose our hotel for _______ stay in the city! (comfortable)",
+    options: ["the most comfortable", "the comfortablest", "the more comfortable"],
+    correct: 0,
+    explanation: "'Comfortable' has 4 syllables, so use 'the most comfortable'."
+  },
+  {
+    stem: "Taste _______ fries in the whole world! (tasty)",
+    options: ["the tastiest", "the most tasty", "the tastier"],
+    correct: 0,
+    explanation: "2-syllable adjectives ending in -y change to -iest: 'the tastiest'."
+  },
+  {
+    stem: "Our electric motor is _______ engine on the market! (fast)",
+    options: ["the fastest", "the most fast", "the faster"],
+    correct: 0,
+    explanation: "1-syllable adjectives add -est: 'the fastest'."
+  }
+];
+
+function renderSuperlativeDrills() {
+  const container = document.getElementById('superlativeDrillContainer');
+  container.innerHTML = '';
+
+  SUPERLATIVE_DRILLS.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'unscramble-card';
+
+    const optsHtml = item.options.map((opt, optIdx) => `
+      <button class="quiz-opt-btn" onclick="checkSuperlativeDrill(this, ${idx}, ${optIdx})">
+        <span>${opt}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div style="font-weight: 700; color: #fff; margin-bottom: 12px;">${idx + 1}. ${item.stem}</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">${optsHtml}</div>
+      <div id="supFb_${idx}" style="margin-top: 10px; font-size: 0.85rem; display: none;"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function checkSuperlativeDrill(btn, idx, optIdx) {
+  const item = SUPERLATIVE_DRILLS[idx];
+  const fb = document.getElementById(`supFb_${idx}`);
+  fb.style.display = 'block';
+
+  if (optIdx === item.correct) {
+    playCorrectSound();
+    btn.classList.add('correct');
+    fb.innerHTML = `<span style="color: #6ee7b7;">✓ Correct! ${item.explanation}</span>`;
+    addGlobalScore(1);
+  } else {
+    playWrongSound();
+    btn.classList.add('wrong');
+    fb.innerHTML = `<span style="color: #fca5a5;">✗ Not quite. Re-check syllable rules!</span>`;
+  }
+}
+
+/* ========================================================
+   AD CREATOR STUDIO LOGIC
+   ======================================================== */
+function updateStudioPreview() {
+  const prod = document.getElementById('studioProductSelect').value;
+  const media = document.getElementById('studioMediaSelect').value;
+  const slogan = document.getElementById('studioSloganInput').value;
+  const cta = document.getElementById('studioCtaInput').value;
+
+  document.getElementById('previewProductTitle').innerText = prod;
+  document.getElementById('previewMediaBadge').innerText = media.toUpperCase();
+  document.getElementById('previewSloganText').innerText = slogan ? `"${slogan}"` : `"Step into the future. Unleash your speed!"`;
+  document.getElementById('previewCtaBtn').innerText = cta ? cta : "Grab Yours Today!";
+}
+
+function validateStudioPEPSI() {
+  const text = (document.getElementById('studioSloganInput').value + " " + document.getElementById('studioCtaInput').value).toLowerCase();
+
+  const hasP1 = /\b(you|your|we|our|us)\b/i.test(text);
+  const hasE  = /\b(heart|love|dream|champion|unleash|magic|secret|power|thrill|fear|joy)\b/i.test(text);
+  const hasP2 = /\b(best|fresh|pure|perfect|guarantee|amazing|sparkling|delicious|great)\b/i.test(text);
+  const hasS  = /\b(best|fastest|greatest|coolest|cleanest|easiest|lightest|most)\b/i.test(text);
+  const hasI  = /\b(buy|get|try|taste|order|grab|visit|call|discover|step|unleash|run|start)\b/i.test(text);
+
+  toggleChk('chk-p1', hasP1);
+  toggleChk('chk-e', hasE);
+  toggleChk('chk-p2', hasP2);
+  toggleChk('chk-s', hasS);
+  toggleChk('chk-i', hasI);
+
+  const total = (hasP1?1:0) + (hasE?1:0) + (hasP2?1:0) + (hasS?1:0) + (hasI?1:0);
+  if (total >= 3) {
+    playCorrectSound();
+    showToast(`🌟 High-Impact Slogan! ${total}/5 PEPSI techniques detected!`);
+    addGlobalScore(2);
+  } else {
+    showToast(`Try adding more PEPSI power! (e.g. use 'you', an imperative verb like 'Buy', or a superlative like 'best').`);
+  }
+}
+
+function toggleChk(id, val) {
+  const el = document.getElementById(id);
+  if (val) el.classList.add('checked');
+  else el.classList.remove('checked');
+}
+
+/* ========================================================
+   TAB 8: 10 MASTERY QUIZ QUESTIONS (Official Course Content)
+   ======================================================== */
+const QUIZ_DATA = [
+  {
+    q: "According to Unit 2 Lesson 1, what is advertising?",
+    opts: [
+      "A way for people to chat with their colleagues online",
+      "The way companies try to convince people to buy their products",
+      "A television program showing the evening news",
+      "A legal document written by government officials"
+    ],
+    correct: 1,
+    exp: "Slide 4: Advertising is the way companies try to convince people to buy their products or services."
+  },
+  {
+    q: "What does the acronym PEPSI stand for in advertising techniques?",
+    opts: [
+      "People, Emotions, Products, Sales, Information",
+      "Persuasion, Energy, Power, Style, Ideas",
+      "Personal Pronouns, Emotive Language, Positive Language, Superlatives, Imperatives",
+      "Packaging, Entertainment, Pricing, Slogans, Imagery"
+    ],
+    correct: 2,
+    exp: "Slide 7 & 9: PEPSI stands for Personal Pronouns, Emotive Language, Positive Language, Superlatives, and Imperatives."
+  },
+  {
+    q: "Which of the following is an example of an advertising medium?",
+    opts: [
+      "A chocolate bar",
+      "Television",
+      "A supermarket",
+      "A shopping trolley"
+    ],
+    correct: 1,
+    exp: "Slide 6 & 10: Television is an advertising medium (a channel through which information is communicated)."
+  },
+  {
+    q: "True or False: Advertising is designed to grab our attention and make us want to purchase a product.",
+    opts: [
+      "True",
+      "False"
+    ],
+    correct: 0,
+    exp: "Slide 4 & 11: True! Good adverts grab attention and encourage customers to buy."
+  },
+  {
+    q: "True or False: Adverts are only shown on the television.",
+    opts: [
+      "True",
+      "False"
+    ],
+    correct: 1,
+    exp: "Slide 6 & 12: False! Adverts appear across many media: websites, billboards, radio, magazines, and mail."
+  },
+  {
+    q: "What are 'bossy verbs' that give a direct instruction or command called?",
+    opts: [
+      "Superlatives",
+      "Personal Pronouns",
+      "Imperatives",
+      "Emotive Adjectives"
+    ],
+    correct: 2,
+    exp: "Slide 13: Imperatives are bossy verbs that give instructions (e.g. 'Buy now!', 'Visit today!')."
+  },
+  {
+    q: "In the slogan 'Because YOU deserve the best', which PEPSI technique is 'you'?",
+    opts: [
+      "Personal Pronoun",
+      "Emotive Language",
+      "Positive Language",
+      "Imperative"
+    ],
+    correct: 0,
+    exp: "'You' and 'your' are Personal Pronouns talking directly to the individual customer."
+  },
+  {
+    q: "Which phrase uses a SUPERLATIVE adjective?",
+    opts: [
+      "Drink Coca-Cola today!",
+      "The easiest way to learn English.",
+      "We care about our friends.",
+      "Don't wait for tomorrow."
+    ],
+    correct: 1,
+    exp: "'The easiest' is a superlative form of easy (easy → easier → easiest)."
+  },
+  {
+    q: "What is the correct negative imperative command?",
+    opts: [
+      "Not to miss our mega sale!",
+      "You don't miss our mega sale!",
+      "Don't miss our mega sale!",
+      "Missing not our mega sale!"
+    ],
+    correct: 2,
+    exp: "Negative imperatives are formed with 'Don't + base verb'."
+  },
+  {
+    q: "What is a 'slogan' in advertising?",
+    opts: [
+      "A packaging material made of paper or plastic",
+      "A very small vehicle used for racing",
+      "A short, memorable phrase used to advertise a product",
+      "A formal complaint sent to a company"
+    ],
+    correct: 2,
+    exp: "From Grade 7 Unit 2 Vocabulary: A slogan is a short, memorable phrase used to advertise a product."
+  }
+];
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+
+  QUIZ_DATA.forEach((item, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+
+    const optsHtml = item.opts.map((opt, optIdx) => `
+      <button class="quiz-opt-btn" onclick="handleQuizAnswer(this, ${qIdx}, ${optIdx})">
+        <span>${String.fromCharCode(65 + optIdx)}. ${opt}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="quiz-q-num">Question ${qIdx + 1} of 10</div>
+      <div class="quiz-question-text">${item.q}</div>
+      <div class="quiz-options">${optsHtml}</div>
+      <div class="quiz-explanation" id="quizExp_${qIdx}">${item.exp}</div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+const quizAnswered = {};
+
+function handleQuizAnswer(btn, qIdx, optIdx) {
+  if (quizAnswered[qIdx]) return;
+  quizAnswered[qIdx] = true;
+
+  const item = QUIZ_DATA[qIdx];
+  const exp = document.getElementById(`quizExp_${qIdx}`);
+  exp.style.display = 'block';
+
+  if (optIdx === item.correct) {
+    playCorrectSound();
+    btn.classList.add('correct');
+    userQuizScore++;
+    addGlobalScore(1);
+  } else {
+    playWrongSound();
+    btn.classList.add('wrong');
+    const buttons = btn.parentElement.querySelectorAll('.quiz-opt-btn');
+    if (buttons[item.correct]) {
+      buttons[item.correct].classList.add('correct');
+    }
+  }
+
+  document.getElementById('quizScoreText').innerText = `${userQuizScore} / 10`;
+
+  if (Object.keys(quizAnswered).length === QUIZ_DATA.length) {
+    setTimeout(() => {
+      showToast(`🎉 Quiz Finished! Final Score: ${userQuizScore}/10`);
+    }, 800);
+  }
+}
+
+/* ========================================================
+   GLOBAL HELPERS & CONTROLS
+   ======================================================== */
+function addGlobalScore(pts) {
+  globalScore += pts;
+  document.getElementById('globalScoreText').innerText = `${globalScore} / 25`;
+  const pct = Math.min(100, Math.round((globalScore / 25) * 100));
+  document.getElementById('topProgressBar').style.width = pct + '%';
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+  const target = document.getElementById(tabId);
+  if (target) target.classList.add('active');
+
+  const navBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => {
+    return b.getAttribute('onclick')?.includes(tabId);
+  });
+  if (navBtn) navBtn.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchGrammarTab(panelId, btn) {
+  document.querySelectorAll('.grammar-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.grammar-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleVietnamese() {
+  document.body.classList.toggle('show-vn');
+  const btn = document.getElementById('btnToggleVN');
+  const on = document.body.classList.contains('show-vn');
+  btn.classList.toggle('active', on);
+  btn.querySelector('span').innerText = on ? '🇻🇳 VN: ON' : '🇻🇳 VN: OFF';
+  showToast(on ? "Vietnamese translations enabled" : "Vietnamese translations hidden");
+}
+
+function toggleTeacherMode() {
+  document.body.classList.toggle('show-teacher');
+  const btn = document.getElementById('btnToggleTeacher');
+  const on = document.body.classList.contains('show-teacher');
+  btn.classList.toggle('active-teacher', on);
+  showToast(on ? "Teacher Coaching Mode: ON" : "Teacher Coaching Mode: OFF");
+}
+
+function toggleSoundFx() {
+  soundFxEnabled = !soundFxEnabled;
+  const btn = document.getElementById('btnToggleAudio');
+  btn.classList.toggle('active', soundFxEnabled);
+  btn.querySelector('span').innerText = soundFxEnabled ? '🔊 Audio' : '🔇 Muted';
+}
+
+/* ========================================================
+   INITIALIZATION
+   ======================================================== */
+window.addEventListener('DOMContentLoaded', () => {
+  renderVocabGrid('all');
+  renderMatchingTask();
+  renderFillInTask();
+  renderUnscrambleTask();
+  loadSloganPreset(0);
+  renderImperativeDrills();
+  renderSuperlativeDrills();
+  renderQuiz();
+  updateStudioPreview();
+});
+</script>
+
+</body>
+</html>
